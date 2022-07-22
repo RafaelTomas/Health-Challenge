@@ -21,13 +21,6 @@ export class Patient {
   @Prop()
   @ApiProperty()
   createdAt: string;
-
-  constructor(patient?: Partial<Patient>) {
-    this.name = patient?.name;
-    this.healthInsuranceCardId = patient?.healthInsuranceCardId;
-    this.address = patient?.address;
-    this.createdAt = patient?.createdAt;
-  }
 }
 
 export const PatientSchema = SchemaFactory.createForClass(Patient);

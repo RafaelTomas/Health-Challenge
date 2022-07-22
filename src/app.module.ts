@@ -1,14 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { PatientModule } from './app/patient/patient.module';
+import { ConfigModule } from './config/config.module';
 
 @Module({
-  imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://RafaelTomas:rafaeltomas@cluster0.h9zhu.mongodb.net/?retryWrites=true&w=majority',
-    ),
-    PatientModule,
-  ],
+  imports: [ConfigModule, PatientModule],
   controllers: [],
   providers: [],
 })
