@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { PatientModule } from './patient/patient.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PatientModule } from './app/patient/patient.module';
 
 @Module({
   imports: [
