@@ -6,13 +6,19 @@ export type PatientDocument = Patient & Document;
 
 @Schema()
 export class Patient {
+  constructor(patient?: Partial<Patient>) {
+    this.name = patient?.name;
+    this.healthInsuranceCardId = patient?.healthInsuranceCardId;
+    this.address = patient?.address;
+    this.createdAt = patient?.createdAt;
+  }
   @Prop()
   @ApiProperty()
   name: string;
 
   @Prop()
   @ApiProperty()
-  healthInsuranceCardId: number;
+  healthInsuranceCardId: string;
 
   @Prop()
   @ApiProperty()

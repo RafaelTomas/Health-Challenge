@@ -11,10 +11,10 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { NotFoundSwagger } from 'src/helpers/swagger/notFound.swagger';
-import { BadRequestSwagger } from 'src/helpers/swagger/badRequest.swagger';
+import { NotFoundSwagger } from '../../helpers/swagger/notFound.swagger';
+import { BadRequestSwagger } from '../../helpers/swagger/badRequest.swagger';
 @ApiTags('patient')
-@Controller('api/v1/patient')
+@Controller('patient')
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
 
