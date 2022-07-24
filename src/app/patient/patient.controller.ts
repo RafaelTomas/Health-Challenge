@@ -9,7 +9,10 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PatientService } from './patient.service';
-import { CreatePatientDto } from './dto/create-patient.dto';
+import {
+  CreatePatientRequestDto,
+  CreatePatientResponseDto,
+} from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import { NotFoundSwagger } from '../../helpers/swagger/notFound.swagger';
 import { BadRequestSwagger } from '../../helpers/swagger/badRequest.swagger';
@@ -22,15 +25,10 @@ export class PatientController {
   @ApiOperation({ summary: 'Create patient' })
   @ApiResponse({
     status: 201,
-    description: 'New patient',
+    type: CreatePatientResponseDto,
   })
-  @ApiResponse({
-    status: 400,
-    description: 'params invalid',
-    type: BadRequestSwagger,
-  })
-  async create(@Body() createPatientDto: CreatePatientDto) {
-    return await this.patientService.create(createPatientDto);
+  async create(@Body() body: CreatePatientRequestDto) {
+    return this.patientService.create(body);
   }
 
   @Get()
@@ -42,7 +40,7 @@ export class PatientController {
     description: 'All patient',
   })
   async findAll() {
-    return await this.patientService.findAll();
+    return this.patientService.findAll();
   }
 
   @Get(':id')
@@ -59,7 +57,7 @@ export class PatientController {
     type: NotFoundSwagger,
   })
   async findOne(@Param('id') id: string) {
-    return await this.patientService.findOne(id);
+    return this.patientService.findOne(id);
   }
 
   @Patch(':id')
@@ -84,7 +82,7 @@ export class PatientController {
     @Param('id') id: string,
     @Body() updatePatientDto: UpdatePatientDto,
   ) {
-    return await this.patientService.update(id, updatePatientDto);
+    return this.patientService.update(id, updatePatientDto);
   }
 
   @Delete(':id')
@@ -101,6 +99,6 @@ export class PatientController {
     type: NotFoundSwagger,
   })
   async remove(@Param('id') id: string) {
-    return await this.patientService.remove(id);
+    return this.patientService.remove(id);
   }
 }

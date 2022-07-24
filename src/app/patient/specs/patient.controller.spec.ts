@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreatePatientDto } from '../dto/create-patient.dto';
+import { CreatePatientRequestDto } from '../dto/create-patient.dto';
 import { Patient } from '../entities/patient.entity';
 import { PatientController } from '../patient.controller';
 import { PatientService } from '../patient.service';
@@ -71,7 +71,7 @@ describe('PatientController', () => {
 
   describe('create', () => {
     it('should return new patient successfully', async () => {
-      const body: CreatePatientDto = {
+      const body: CreatePatientRequestDto = {
         name: 'create',
         healthInsuranceCardId: '123465789',
         address: 'somewhere',
@@ -85,7 +85,7 @@ describe('PatientController', () => {
       expect(patientService.create).toHaveBeenCalledWith(body);
     });
     it('should bring in case of error', () => {
-      const body: CreatePatientDto = {
+      const body: CreatePatientRequestDto = {
         name: 'create',
         healthInsuranceCardId: '123465789',
         address: 'somewhere',

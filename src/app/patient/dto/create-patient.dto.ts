@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-export class CreatePatientDto {
+import { ApiProperty, ApiResponseProperty } from '@nestjs/swagger';
+export class CreatePatientRequestDto {
   @ApiProperty({
     example: 'Matilde Fernandes Gonçalves',
     description: 'Patient name',
@@ -22,5 +22,19 @@ export class CreatePatientDto {
     example: '2022-05-05',
     description: 'When it was created in the patient list',
   })
+  createdAt: string;
+}
+
+export class CreatePatientResponseDto {
+  @ApiResponseProperty()
+  name: string;
+
+  @ApiResponseProperty()
+  healthInsuranceCardId: string;
+
+  @ApiResponseProperty()
+  address: string;
+
+  @ApiResponseProperty()
   createdAt: string;
 }
