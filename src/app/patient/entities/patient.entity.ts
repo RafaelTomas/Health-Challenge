@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ApiProperty } from '@nestjs/swagger';
 import { Document } from 'mongoose';
 
 export type PatientDocument = Patient & Document;
@@ -12,20 +11,17 @@ export class Patient {
     this.address = patient?.address;
     this.createdAt = patient?.createdAt;
   }
+
   @Prop()
-  @ApiProperty()
   name: string;
 
   @Prop()
-  @ApiProperty()
   healthInsuranceCardId: string;
 
   @Prop()
-  @ApiProperty()
   address: string;
 
   @Prop()
-  @ApiProperty()
   createdAt: string;
 }
 

@@ -34,6 +34,9 @@ export class CreatePatientRequestDto {
 
 export class CreatePatientResponseDto {
   @ApiResponseProperty()
+  _id: string;
+
+  @ApiResponseProperty()
   name: string;
 
   @ApiResponseProperty()

@@ -13,9 +13,10 @@ import {
   CreatePatientRequestDto,
   CreatePatientResponseDto,
 } from './dto/create-patient.dto';
-import { UpdatePatientDto } from './dto/update-patient.dto';
+import { UpdatePatientRequestDto } from './dto/update-patient.dto';
 import { NotFoundSwagger } from '../../helpers/swagger/notFound.swagger';
 import { BadRequestSwagger } from '../../helpers/swagger/badRequest.swagger';
+import { PatientResponseDto } from './dto/patient.dto';
 @ApiTags('patient')
 @Controller('patient')
 export class PatientController {
@@ -28,7 +29,8 @@ export class PatientController {
     type: CreatePatientResponseDto,
   })
   async create(@Body() body: CreatePatientRequestDto) {
-    return this.patientService.create(body);
+    const patient = this.patientService.create(body);
+    return patient;
   }
 
   @Get()
@@ -49,7 +51,7 @@ export class PatientController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Patient listed',
+    type: PatientResponseDto,
   })
   @ApiResponse({
     status: 404,
@@ -57,7 +59,8 @@ export class PatientController {
     type: NotFoundSwagger,
   })
   async findOne(@Param('id') id: string) {
-    return this.patientService.findOne(id);
+    const patient = await this.patientService.findOne(id);
+    return patient;
   }
 
   @Patch(':id')
@@ -80,9 +83,10 @@ export class PatientController {
   })
   async update(
     @Param('id') id: string,
-    @Body() updatePatientDto: UpdatePatientDto,
+    @Body() updatePatientDto: UpdatePatientRequestDto,
   ) {
-    return this.patientService.update(id, updatePatientDto);
+    const patient = await this.patientService.update(id, updatePatientDto);
+    return patient;
   }
 
   @Delete(':id')

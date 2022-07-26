@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { CreatePatientRequestDto } from './dto/create-patient.dto';
-import { UpdatePatientDto } from './dto/update-patient.dto';
+import { UpdatePatientRequestDto } from './dto/update-patient.dto';
 import { Patient, PatientDocument } from './entities/patient.entity';
 
 @Injectable()
@@ -24,8 +24,8 @@ export class PatientService {
     return this.patientModel.findById(id);
   }
 
-  update(id: string, updatePatientDto: UpdatePatientDto) {
-    return this.patientModel
+  async update(id: string, updatePatientDto: UpdatePatientRequestDto) {
+    const patient = await this.patientModel
       .findByIdAndUpdate(
         {
           _id: id,
@@ -38,6 +38,8 @@ export class PatientService {
         },
       )
       .exec();
+
+    return patient;
   }
 
   remove(id: string) {

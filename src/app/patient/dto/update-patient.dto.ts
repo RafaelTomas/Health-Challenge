@@ -1,4 +1,33 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreatePatientRequestDto } from './create-patient.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsNotEmpty } from 'class-validator';
 
-export class UpdatePatientDto extends PartialType(CreatePatientRequestDto) {}
+export class UpdatePatientRequestDto {
+  @ApiProperty({
+    example: 'Matilde Fernandes Gonçalves',
+    description: 'Patient name',
+  })
+  @IsString()
+  name: string;
+
+  @ApiProperty({
+    example: '123465789',
+    description: 'Patient health Insurance Card Id',
+  })
+  @IsString()
+  healthInsuranceCardId: string;
+
+  @ApiProperty({
+    example: 'Rua Luís de Castro, 1182',
+    description: 'Patient address',
+  })
+  @IsString()
+  address: string;
+
+  @ApiProperty({
+    example: '2022-05-05',
+    description: 'When it was created in the patient list',
+  })
+  @IsString()
+  @IsNotEmpty()
+  createdAt: string;
+}
