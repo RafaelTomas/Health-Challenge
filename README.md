@@ -7,7 +7,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/RafaelTomas/Health-Challenge?style=for-the-badge)
 
 
-<img src="./img/menuFoto.png" alt="Foto do Swagger">
+<img src="./img.png" alt="Foto do Swagger">
 
 > Descreve as informações do paciente.
 
