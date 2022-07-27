@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { PatientService } from './patient.service';
 import { PatientController } from './patient.controller';
-import { Patient, PatientSchema } from './entities/patient.entity';
+import { Patient, PatientSchema } from './entities/patient.entitys';
 
 @Module({
   imports: [

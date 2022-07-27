@@ -4,14 +4,14 @@ import { Model } from 'mongoose';
 
 import { CreatePatientRequestDto } from './dto/create-patient.dto';
 import { UpdatePatientRequestDto } from './dto/update-patient.dto';
-import { Patient, PatientDocument } from './entities/patient.entity';
+import { Patient, PatientDocument } from './entities/patient.entitys';
 
 @Injectable()
 export class PatientService {
   constructor(
     @InjectModel(Patient.name) private patientModel: Model<PatientDocument>,
   ) {}
-  create(createPatientDto: CreatePatientRequestDto) {
+  async create(createPatientDto: CreatePatientRequestDto) {
     const patient = new this.patientModel(createPatientDto);
     return patient.save();
   }
@@ -43,6 +43,7 @@ export class PatientService {
   }
 
   remove(id: string) {
-    return this.patientModel.deleteOne({ _id: id }).exec();
+    const patient = this.patientModel.deleteOne({ _id: id });
+    return patient;
   }
 }
