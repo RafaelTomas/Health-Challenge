@@ -173,7 +173,7 @@ describe('PatientController', () => {
         createdAt: '9999-99-99',
       };
 
-      jest.spyOn(patientService, 'update').mockRejectedValueOnce(new Error());
+      MockPatientService.update.mockRejectedValueOnce(new Error());
 
       expect(
         patientController.update('62d9f3825f0d1644146cfe54', body),
@@ -191,7 +191,7 @@ describe('PatientController', () => {
     });
 
     it('should bring in case of error', () => {
-      jest.spyOn(patientService, 'remove').mockRejectedValueOnce(new Error());
+      MockPatientService.remove.mockRejectedValueOnce(new Error());
 
       expect(
         patientController.remove('62d9f3825f0d1644146cfe54'),
